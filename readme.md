@@ -33,6 +33,8 @@ https://en.wikipedia.org/wiki/Complex_analysis
 
 https://en.wikipedia.org/wiki/Newton%27s_method
 
+https://en.wikipedia.org/wiki/Taylor_series
+
 https://en.wikipedia.org/wiki/Exponential_function#Complex_plane
 
 https://en.wikipedia.org/wiki/Complex_logarithm
