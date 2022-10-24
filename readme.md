@@ -13,6 +13,7 @@ Polynomials as lists in form `poly([a,b,c]) == ax2 + bx + c`
 Addition, subtraction, and multiplication work properly, but no polynomial long division
 
 Also we have `self.val(x)`, `self.dvt`, and `self.itg` for evalutation, differentiation, and integration
+*(integration just returns an anti-derivative polynomial, assuming C = 0)*
 
 Instead there is `self.rootdiv(rt)`, using synthetic division to factor out a root
 

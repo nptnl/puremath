@@ -160,7 +160,7 @@ def buildp(rootlist):
         function *= poly([1,-rt])
     return function
 
-def rangefix(x,rng):
+def rangefix(x,rng): # in progress, will hopefully be able to use this for fixing exp(x) inputs
     diff = 0
     if x > rng:
         diff = int(x - rng) + 1
