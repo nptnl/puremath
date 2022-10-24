@@ -145,9 +145,9 @@ def newton(p,y=0):
         counter += 1
     return comp(round(x2.r,5),round(x2.i,5))
 def sqrt(x):
-    return poly([1,0,-x]).solve()
+    return poly([1,0,0]).solve(x)
 def cbrt(x):
-    return poly([1,0,0,-x]).solve()
+    return poly([1,0,0,0]).solve(x)
 def root(n,x):
     p = [1]
     while len(p) < n:

@@ -1,36 +1,40 @@
 # based math has arrived
 
-## class comp:
-Complex numbers but they use i instead of j
-(more based)
+*This is a Python library designed to include some **very cool** math operations without relying on any other modules/libraries. I know it's slow, it's a personal project and I don't care.*
 
-Addition, subtraction, multiplication, and division work fine, but there's no exponentiation yet
+## We have:
 
-## class poly:
-Polynomials as lists in form `poly([a,b,c]) == ax2 + bx + c`
-(with style)
+- Complex number objects, stored in `(a+bi) -> comp(a,b)`(with `+,-,*,/`)
 
-Addition, subtraction, and multiplication work properly, but no polynomial long division
+- Polynomial objects, stored as a list of coefficients
+ `poly([3,2,1]) == 3x2 + 2x + 1` 
+ with `+,-,*,` synthetic division, derivatives and antiderivatives, evalutation, and complete (approximate) solving
 
-Also we have `self.val(x)`, `self.dvt`, and `self.itg` for evalutation, differentiation, and integration
-*(integration just returns an anti-derivative polynomial, assuming C = 0)*
+ - Newton's method of computing complex polynomial solutions and all roots of a number
 
-Instead there is `self.rootdiv(rt)`, using synthetic division to factor out a root
+ - The complex exponential function, using a 12-term Taylor polynomial that is accurate for -3 < x < 3
 
-`self.solve()` uses Newton's method and synthetic division to find all solutions to any polynomial (my crowning achievement)
+- Logarithms using Newton's method on this Taylor polynomial
 
-`exp(x)` uses a Taylor series to evaluate the exponential function
+- Angle objects (with `+,-`) that display angles in terms of π
 
-`ln(x)` uses Newton's method on the exponential Taylor series for the natural logarithm, and `log(n,x)` uses `ln(x)/ln(n)`
+- Complex trigonometric functions using the complex exponential function
 
-`sqrt(x)` and `cbrt(x)` return all valid roots
+- Complex inverse trigonometric functions using complex logarithms
 
-## class angle:
-Angle objects in terms of π, compatible with any measuring unit
-(also with complex trig)
+- A variable `based` thats always `True`
 
-Angles can add, subtract, and multiply/divide by a scalar.
+## Math reading:
+*isn't it crazy how such complicated processes are required for functions used in simple calculators?*
 
-Trig functions `self.sin(), self.cos(), self.tan(), self.csc(), self.sec(), self.cot()` use the exponential Taylor series to do trig stuff
+https://en.wikipedia.org/wiki/Calculus
 
-Inverse trig functions `asin(x), acos(x), atan(x), acsc(x), asec(x), acot(x)` use square roots and the natural logarithm to output angle values for inverse trig functions
+https://en.wikipedia.org/wiki/Complex_analysis
+
+https://en.wikipedia.org/wiki/Newton%27s_method
+
+https://en.wikipedia.org/wiki/Exponential_function#Complex_plane
+
+https://en.wikipedia.org/wiki/Complex_logarithm
+
+youtube.com/3blue1brown
