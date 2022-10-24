@@ -7,7 +7,7 @@ Complex numbers but they use i instead of j
 Addition, subtraction, multiplication, and division work fine, but there's no exponentiation yet
 
 ## class poly:
-Polynomials as lists in form `poly([a,b,c]) == ax2 + bx + c
+Polynomials as lists in form `poly([a,b,c]) == ax2 + bx + c`
 (with style)
 
 Addition, subtraction, and multiplication work properly, but no polynomial long division
