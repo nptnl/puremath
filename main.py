@@ -168,17 +168,29 @@ def rangefix(x,rng): # in progress, will hopefully be able to use this for fixin
     elif x < -rng:
         diff = int(-rng - x) + 1
         x += diff
-    return x,diff
+    return x,-diff
 
 def exp(x):
     series = poly([2.08767569878681e-09,
-    2.505210838544172e-08,2.7557319223985894e-07,
-    2.7557319223985893e-06,2.48015873015873e-05,
-    0.0001984126984126984,0.001388888888888889,
-    0.008333333333333333,0.041666666666666664,
-    0.16666666666666666,0.5,1.0,1.0])
-    exact = series.val(x)
-    return comp(round(exact.r,6),round(exact.i,6))
+        2.505210838544172e-08,2.7557319223985894e-07,
+        2.7557319223985893e-06,2.48015873015873e-05,
+        0.0001984126984126984,0.001388888888888889,
+        0.008333333333333333,0.041666666666666664,
+        0.16666666666666666,0.5,1.0,1.0])
+    if isinstance(x,comp):
+        inp = x
+    else:
+        inp = comp(x,0)
+    inp.i = rangefix(inp.i,pi)[0]
+    inp.r,extra = rangefix(inp.r,3)
+    calc = series.val(inp)
+    if extra > 0:
+        for time in range(extra):
+            calc *= e
+    elif extra < 0:
+        for time in range(-extra):
+            calc /= e
+    return comp(round(calc.r,6),round(calc.i,6))
 def ixp(x):
     return exp(ii*x)
 def ln(x):
