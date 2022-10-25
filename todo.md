@@ -4,6 +4,8 @@
 
 - fix input range for exp(x) and ln(x) because the Taylor series is only good for -3 < x < 3
 
+- complex numbers as r*e^ix
+
 - square-root objects, where irrational roots of a polynomial can be stored exactly
 
 - polynomial long division
