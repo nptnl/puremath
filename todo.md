@@ -17,5 +17,3 @@
 - manual approximation for derivatives and integrals using the limit definition and riemann sums (for functions that are literally functions in python)?
 
 - quaternions! *(probably in their own special world because main.py is set up for complex objects specifically)*
-
-- make inverse trig more tolerant to complex outputs

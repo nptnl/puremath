@@ -224,11 +224,11 @@ class angle:
         return i1 / self.tan()
 
 def acos(x):
-    return angle((-ii*ln(sqrt(x*x-1)[0]+x)).r,tau)
+    return -ii*ln(sqrt(x*x-1)[0]+x)
 def asin(x):
-    return acos(x) + angle(0.25)
+    return acos(x) + pi/2
 def atan(x):
-    return angle((ii/2 * (ln(-ii*x+1)-ln(ii*x+1))).r,tau)
+    return ii/2 * (ln(-ii*x+1)-ln(ii*x+1))
 def asec(x):
     return acos(i1 / x)
 def acsc(x):
