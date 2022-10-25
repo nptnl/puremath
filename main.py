@@ -118,8 +118,7 @@ class poly:
         integral.append(0) # assumes C = 0, its just antiderivative
         return poly(integral)
     def solve(self,y=0): # welcome to cracked math
-        p = self
-        p.co[-1] -= y
+        p = self - poly([y])
         rootlist = []
         string = ''
         while p.le > 1:
@@ -165,10 +164,10 @@ def buildp(rootlist):
 def rangefix(x,rng):
     diff = 0
     if x > rng:
-        diff = int(x - rng) + 1
+        diff = int(x - rng)
         x -= diff
     elif x < -rng:
-        diff = -int(-rng - x) - 1
+        diff = -int(-rng - x)
         x -= diff
     return x,diff
 series = poly([2.08767569878681e-09,2.505210838544172e-08,
@@ -184,6 +183,7 @@ def exp(x):
         inp = comp(x,0)    
     inp.i = rangefix(inp.i,pi)[0]
     inp.r,extra = rangefix(inp.r,3)
+    print(inp,extra)
     calc = series.val(inp)
     if extra > 0:
         for time in range(extra):
