@@ -118,10 +118,11 @@ class poly:
         return poly(integral)
     def solve(self,y=0): # welcome to cracked math
         p = self
+        p.co[-1] -= y
         rootlist = []
         string = ''
         while p.le > 1:
-            solution = newton(p,y)
+            solution = newton(p)
             rootlist.append(solution)
             p = p.rootdiv(solution)
         return rootlist
@@ -160,27 +161,27 @@ def buildp(rootlist):
         function *= poly([1,-rt])
     return function
 
-def rangefix(x,rng): # in progress, will hopefully be able to use this for fixing exp(x) inputs
+def rangefix(x,rng):
     diff = 0
     if x > rng:
         diff = int(x - rng) + 1
         x -= diff
     elif x < -rng:
-        diff = int(-rng - x) + 1
-        x += diff
-    return x,-diff
+        diff = -int(-rng - x) - 1
+        x -= diff
+    return x,diff
 
 def exp(x):
+    if isinstance(x,comp):
+        inp = x
+    else:
+        inp = comp(x,0)    
     series = poly([2.08767569878681e-09,
         2.505210838544172e-08,2.7557319223985894e-07,
         2.7557319223985893e-06,2.48015873015873e-05,
         0.0001984126984126984,0.001388888888888889,
         0.008333333333333333,0.041666666666666664,
         0.16666666666666666,0.5,1.0,1.0])
-    if isinstance(x,comp):
-        inp = x
-    else:
-        inp = comp(x,0)
     inp.i = rangefix(inp.i,pi)[0]
     inp.r,extra = rangefix(inp.r,3)
     calc = series.val(inp)
@@ -194,12 +195,23 @@ def exp(x):
 def ixp(x):
     return exp(ii*x)
 def ln(x):
+    if isinstance(x,comp):
+        inp = x
+    else:
+        inp = comp(x,0)
     series = poly([2.08767569878681e-09,2.505210838544172e-08,
-    2.7557319223985894e-07,2.7557319223985893e-06,
-    2.48015873015873e-05,0.0001984126984126984,
-    0.001388888888888889,0.008333333333333333,
-    0.041666666666666664,0.16666666666666666,0.5,1.0,1.0])
-    return newton(series,x)
+        2.7557319223985894e-07,2.7557319223985893e-06,
+        2.48015873015873e-05,0.0001984126984126984,
+        0.001388888888888889,0.008333333333333333,
+        0.041666666666666664,0.16666666666666666,0.5,1.0,1.0])
+    diff = 0
+    while abs(inp.r) >= 20:
+        inp.r /= e
+        diff += 1
+    while abs(inp.r) <= 0.05:
+        inp.r *= e
+        diff -= 1
+    return newton(series,inp) + diff
 def log(n,x):
     return ln(x) / ln(n)
 
