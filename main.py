@@ -13,6 +13,8 @@ class comp:
             return f'({self.r}+{self.i}i)'
     def __neg__(self):
         return comp(-self.r,-self.i)
+    def __abs__(self):
+        return sqrt(self.r*self.r + self.i*self.i)[0].r
     def __add__(s1,s2):
         if isinstance(s2,comp):
             return comp(s1.r+s2.r,s1.i+s2.i)
@@ -35,7 +37,7 @@ class comp:
         return comp(s1.r/s2,s1.i/s2)
 class poly:
     def __init__(self,coef):
-        while coef[0] == 0:
+        while coef[0] == 0 and len(coef) > 1:
             coef.pop(0)
         self.le = len(coef)
         if coef == []:
@@ -67,7 +69,10 @@ class poly:
         while len(p1) > len(p2):
             p2.insert(0,0)
         for term in range(len(p1)):
-            polysum.append(p1[term]+p2[term])
+            if isinstance(p2[term],comp):
+                polysum.append(p2[term]+p1[term])
+            else:
+                polysum.append(p1[term]+p2[term])
         return poly(polysum)
     def __sub__(s1,s2):
         p1 = s1.co
@@ -78,7 +83,10 @@ class poly:
         while len(p1) > len(p2):
             p2.insert(0,0)
         for term in range(len(p1)):
-            polysum.append(p1[term]-p2[term])
+            if isinstance(p2[term],comp):
+                polysum.append(p2[term]-p1[term])
+            else:
+                polysum.append(p1[term]-p2[term])
         return poly(polysum)
     def __mul__(s1,s2):
         p1 = s1.co
@@ -88,7 +96,12 @@ class poly:
             product.append(0)
         for t1 in range(-s1.le,0):
             for t2 in range(-s2.le,0):
-                product[t1+t2+1] += p1[t1] * p2[t2]
+                if isinstance(p2[t2],comp):
+                    product[t1+t2+1] = p2[t2] * p1[t1] + product[t1+t2+1]
+                elif isinstance(p1[t1],comp):
+                    product[t1+t2+1] = p1[t1] * p2[t2] + product[t1+t2+1]
+                else:
+                    product[t1+t2+1] += p1[t1] * p2[t2]
         return poly(product)
     def rootdiv(self,rt):
         quotient = [self.co[0]]
@@ -170,12 +183,12 @@ def rangefix(x,rng):
         diff = -int(-rng - x)
         x -= diff
     return x,diff
-series = poly([2.08767569878681e-09,2.505210838544172e-08,
+series = poly([
+    2.08767569878681e-09,2.505210838544172e-08,
     2.7557319223985894e-07,2.7557319223985893e-06,
     2.48015873015873e-05,0.0001984126984126984,
     0.001388888888888889,0.008333333333333333,
     0.041666666666666664,0.16666666666666666,0.5,1.0,1.0])
-
 def exp(x):
     if isinstance(x,comp):
         inp = x
@@ -183,7 +196,6 @@ def exp(x):
         inp = comp(x,0)    
     inp.i = rangefix(inp.i,pi)[0]
     inp.r,extra = rangefix(inp.r,3)
-    print(inp,extra)
     calc = series.val(inp)
     if extra > 0:
         for time in range(extra):
@@ -207,7 +219,7 @@ def ln(x):
         while abs(inp.r) <= 0.3:
             inp.r *= e
             diff -= 1
-    return newton(series,inp) + diff
+    return newton(inp) + diff
 def log(n,x):
     return ln(x) / ln(n)
 
@@ -242,7 +254,6 @@ class angle:
         return i1 / self.cos()
     def cot(self):
         return i1 / self.tan()
-
 def acos(x):
     return -ii*ln(sqrt(x*x-1)[0]+x)
 def asin(x):

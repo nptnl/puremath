@@ -4,15 +4,13 @@
 
 - fix input range for ln(x) because it gives sussy outputs at certain inputs
 
-- complex numbers as r*e^ix *(after ln(x) is range-fixed)*
+    - can be used for complex exponentiation
 
-- square-root objects, where irrational roots of a polynomial can be stored exactly?
+    - and complex numbers as r*e^ix
+
+- square-root and natural-log objects for more exact storage
 
 - polynomial long division
-
-- complex exponentiation *(only once ln(x) is range-fixed)*
-
-- natural log objects perhaps, just to store them more exactly?
 
 - manual approximation for derivatives and integrals using the limit definition and riemann sums (for functions that are literally functions in python)?
 

@@ -8,6 +8,8 @@
 
 `__neg__(self)` simply negates both the real and imaginary part to negate the complex number
 
+`__abs__(self)` uses the square root and the distance formula to find the absolute value of a complex number
+
 `__add__(s1,s2)` adds two complex numbers, simply by adding real and imaginary parts
 
 `__sub__(s1,s2)` subtracts two complex numbers, simply by subtracting real and imaginary parts
@@ -62,7 +64,7 @@
 
 `ixp(x)` is shorthand for e^ix or `exp(ii*x)`
 
-`ln(x)` performs Newton's method on the exponential Taylor polynomial to approximate a natural logarithm for an input
+`ln(x)` performs Newton's method on the exponential Taylor polynomial to approximate a natural logarithm for an input *(doesn't work properly yet)*
 
 `log(n,x)` uses `log(n,x) == ln(x) / ln(n)` to compute logarithms of any base
 
