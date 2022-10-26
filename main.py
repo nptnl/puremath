@@ -158,6 +158,18 @@ def newton(p,y=0):
         x2 -= (p.val(x1)-y) / pp.val(x1)
         counter += 1
     return comp(round(x2.r,5),round(x2.i,5))
+def rnewton(p,y=0):
+    counter = 0
+    pp = p.dvt()
+    x1,x2 = 2,1
+    while abs(x2-x1) > 0.0001:
+        if counter > 100:
+            x2 += 1
+            counter = 0
+        x1 = x2
+        x2 -= (p.val(x1).r-y) / pp.val(x1).r
+        counter += 1
+    return round(x2,5)
 def sqrt(x):
     return poly([1,0,0]).solve(x)
 def cbrt(x):
@@ -206,20 +218,26 @@ def exp(x):
     return comp(round(calc.r,6),round(calc.i,6))
 def ixp(x):
     return exp(ii*x)
-def ln(x):
-    if isinstance(x,comp):
-        inp = x
-    else:
-        inp = comp(x,0)
+def realn(x):
+    inp = x
     diff = 0
-    if inp.r != 0:
-        while abs(inp.r) >= 3:
-            inp.r /= e
+    if inp != 0:
+        while abs(inp) >= 3:
+            inp /= e
             diff += 1
-        while abs(inp.r) <= 0.3:
-            inp.r *= e
+        while abs(inp) <= 0.3:
+            inp *= e
             diff -= 1
-    return newton(inp) + diff
+    return rnewton(series,inp) + diff
+def ln(x):
+    reflect = 1
+    real = realn(abs(x))
+    unit = x / abs(x)
+    if isinstance(x,comp) and unit.i < 0:
+        unit.i = -unit.i
+        reflect = -1
+    imag = newton(series,unit).i * reflect
+    return comp(real,imag)
 def log(n,x):
     return ln(x) / ln(n)
 

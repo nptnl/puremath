@@ -2,11 +2,9 @@
 
 ***all items are tentative and might not happen ever***
 
-- fix input range for ln(x) because it gives sussy outputs at certain inputs
+- complex exponentiation
 
-    - can be used for complex exponentiation
-
-    - and complex numbers as r*e^ix
+- complex numbers as r*e^ix
 
 - square-root and natural-log objects for more exact storage
 

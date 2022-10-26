@@ -50,6 +50,8 @@
 
 `newton(p,y=0)` uses Newton's method to approximate an x-value such that `p.val(x) == y`, or simply the solutions of a polynomial
 
+`rnewton(p,y=0)` is just `newton` but only tolerating real inputs and outputs (the starting seed value is real, so the root it finds will always be real)
+
 `sqrt(x)` creates the polynomial `poly([1,0,0])` or x2 and solves it for a given value
 
 `cbrt(x)` is the same process, just with a cubic x3
@@ -64,7 +66,9 @@
 
 `ixp(x)` is shorthand for e^ix or `exp(ii*x)`
 
-`ln(x)` performs Newton's method on the exponential Taylor polynomial to approximate a natural logarithm for an input *(doesn't work properly yet)*
+`realn(x)` range-fixes real logarithm inputs, then uses Newton's method on the Taylor polynomial to approximate the natural logarithm
+
+`ln(x)` separates an input's absolute value and corresponding unit-circle value, then uses `realn` and `newton` to reach the natural logarithms of each and combines them
 
 `log(n,x)` uses `log(n,x) == ln(x) / ln(n)` to compute logarithms of any base
 
