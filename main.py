@@ -35,6 +35,8 @@ class comp:
         if isinstance(s2,comp):
             return s1 * s2.inv()
         return comp(s1.r/s2,s1.i/s2)
+    def __pow__(s1,s2):
+        return exp(ln(s1) * s2)
 class poly:
     def __init__(self,coef):
         while coef[0] == 0 and len(coef) > 1:
@@ -195,6 +197,12 @@ def rangefix(x,rng):
         diff = -int(-rng - x)
         x -= diff
     return x,diff
+def anglefix(a):
+    while a < -pi:
+        a += tau
+    while a > pi:
+        a -= tau
+    return a
 series = poly([
     2.08767569878681e-09,2.505210838544172e-08,
     2.7557319223985894e-07,2.7557319223985893e-06,
@@ -206,7 +214,7 @@ def exp(x):
         inp = x
     else:
         inp = comp(x,0)    
-    inp.i = rangefix(inp.i,pi)[0]
+    inp.i = anglefix(inp.i)
     inp.r,extra = rangefix(inp.r,3)
     calc = series.val(inp)
     if extra > 0:
@@ -284,6 +292,23 @@ def acsc(x):
     return asin(i1 / x)
 def acot(x):
     return atan(i1 / x)
+
+class polar:
+    def __init__(self,radius,angle):
+        if radius < 0:
+            radius = -radius
+            angle += pi
+        angle = anglefix(angle)
+        self.r = radius
+        self.a = angle / pi
+    def __repr__(self):
+        return f'{self.r}*e^({self.a}iπ)'
+    def __neg__(self):
+        return polar(self.r,self.a+pi)
+    def __mul__(s1,s2):
+        return polar(s1.r*s2.r,s1.a+s2.a)
+    def __truediv__(s1,s2):
+        return polar(s1.r/s2.r,s1.a-s2.a)
 
 print('based math has arrived')
 based = True

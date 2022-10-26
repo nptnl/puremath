@@ -22,6 +22,8 @@
 
 `__truediv__(s1,s2)` simply multiplies one complex number by the other's inverse to divide properly
 
+`__pow__(s1,s2)` uses `exp` and `ln` to compute complex exponentiation
+
 **`class poly:` Polynomial objects**
 
 `__init__(self,coef)` takes only one argument, a list of coefficients in descending exponent order, and this will include zeros for a term that is not in the polynomial
@@ -85,5 +87,17 @@
 `sin(self), cos(self), tan(self), csc(self), sec(self),` and `cot(self)` use the exponential function to approximate trigonometric functions on angles
 
 `asin(x), acos(x), atan(x), acsc(x), asec(x),` and `acot(x)` use natural logarithms and square roots to perform inverse trigonometric functions, returning an angle object
+
+**`class polar:` Complex numbers in polar form**
+
+`__init__(self,radius,angle):` creates the object while measure-fixing the angle
+
+`__repr__(self)` creates a string with the angle in terms of π
+
+`__neg__(self)` adds π to the angle to negate the complex number
+
+`__mul__(s1,s2)` multiplies objects by multiplying radii and adding angles
+
+`__truediv__(s1,s2)` divides objects by dividing radii and subtracting angles
 
 *more coming soon (some of it might be on todo.md)*

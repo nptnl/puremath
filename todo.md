@@ -2,10 +2,6 @@
 
 ***all items are tentative and might not happen ever***
 
-- complex exponentiation
-
-- complex numbers as r*e^ix
-
 - square-root and natural-log objects for more exact storage
 
 - polynomial long division
