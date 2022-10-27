@@ -1,5 +1,4 @@
 # both of your parents ;)
-
 class comp:
     def __init__(self,real,imag):
         self.r = real
@@ -292,7 +291,6 @@ def acsc(x):
     return asin(i1 / x)
 def acot(x):
     return atan(i1 / x)
-
 class polar:
     def __init__(self,radius,angle):
         if radius < 0:
