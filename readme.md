@@ -4,7 +4,7 @@
 
 ## We have:
 
-- Complex number objects, stored in `(a+bi) -> comp(a,b)`(with `+,-,*,/`)
+- Complex number objects, stored in `(a+bi) -> comp(a,b)`(with `+,-,*,/,**`)
 
 - Polynomial objects, stored as a list of coefficients
  `poly([3,2,1]) == 3x2 + 2x + 1` 
@@ -21,6 +21,8 @@
 - Complex trigonometric functions using the complex exponential function
 
 - Complex inverse trigonometric functions using complex logarithms
+
+- Complex numbers in polar form `r*e^(a*iπ)` (with `*,/`)
 
 - A variable `based` thats always `True`
 

@@ -44,7 +44,7 @@
 
 `dvt(self)` uses the power rule to return a derivative polynomial
 
-`itg(self)` cannot compute real integration, but rather returns an antiderivative of the polynomial assuming C = 0
+`itg(self,C=0)` cannot compute real integration, but rather returns an antiderivative of the polynomial with a given C-value assumed to be 0
 
 `solve(self,y=0)` uses `newton` and `rootdiv`to find an approximate solution to a polynomial, then factor it out and repeat the process, finding all solutions to any polynomial at value `y`
 

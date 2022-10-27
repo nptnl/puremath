@@ -126,11 +126,11 @@ class poly:
         for term in range(-self.le,-1):
             derivative.append(self.co[term] * (-term-1))
         return poly(derivative)
-    def itg(self):
+    def itg(self,C=0):
         integral = []
         for term in range(-self.le,0):
             integral.append(self.co[term] / -term)
-        integral.append(0) # assumes C = 0, its just antiderivative
+        integral.append(C) # enter your own C-value, assumes it's 0
         return poly(integral)
     def solve(self,y=0): # welcome to cracked math
         p = self - poly([y])
