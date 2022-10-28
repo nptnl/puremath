@@ -237,7 +237,7 @@ def plot(colist):
 print('based rendering has arrived')
 based = True
 
-def spinspin(dr='y')
+def spinspin(dr='y'):
     angle = 0
     while angle <= pm.pi:
         plot(
