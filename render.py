@@ -54,9 +54,9 @@ def Line(c1,c2):
             out = horizLine(c2,c1)
     elif c1.x == c2.x:
         if c2.y >= c1.y:
-            return horizLine(c1.swap(),c2.swap())
+            out = horizLine(c1.swap(),c2.swap())
         else:
-            return horizLine(c2.swap(),c1.swap())
+            out = horizLine(c2.swap(),c1.swap())
         for indx in range(len(out)):
             out[indx] = out[indx].swap()
     else:
