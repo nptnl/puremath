@@ -1,9 +1,19 @@
 # four bones five bone (64x64)
+import main as pm
 dim  = 64
+
+def propatan(y,x):
+    if y > 0:
+        return pm.atan(y/x)
+    return pm.atan(y/x) + pm.pi
 class co2D:
     def __init__(self,x,y):
         self.x = x
         self.y = y
+        if x > 0 and x < dim and y > 0 and y < dim:
+            self.domain = True
+        else:
+            self.domain = False
     def __repr__(self):
         return f'2D({self.x},{self.y})'
     def whole(self):
@@ -23,7 +33,35 @@ class co3D:
         Px = ((self.x-dim/2)*focal / (self.z+focal)) + dim/2
         Py = ((self.y-dim/2)*focal / (self.z+focal)) + dim/2
         return co2D(Px,Py).whole()
-
+    def whole(self):
+        return co3D(round(self.x),round(self.y),round(self.z))
+    def rotate(self,axis,angle):
+        d = 0.5 * dim
+        x,y,z = self.x-d, self.y-d, self.z-d
+        if axis == 'z': #theres probably some optimization i'll make later
+            mag = abs(pm.comp(x,y))
+            if x == 0:
+                angle1 = pm.pi / 2
+            else:
+                angle1 = propatan(y,x).r
+            new = pm.ixp(angle1+angle) * mag
+            return co3D(new.r+d, new.i+d, z+d).whole()
+        elif axis == 'y':
+            mag = abs(pm.comp(x,z))
+            if x == 0:
+                angle1 = pm.pi / 2
+            else:
+                angle1 = propatan(z,x).r
+            new = pm.ixp(angle1+angle) * mag
+            return co3D(new.r+d, y+d, new.i+d).whole()
+        elif axis == 'x':
+            mag = abs(pm.comp(y,z))
+            if y == 0:
+                angle1 = pm.pi / 2
+            else:
+                angle1 = propatan(z,y).r
+            new = pm.ixp(angle1+angle) * mag
+            return co3D(x+d, new.r+d, new.i+d).whole()
 def basicLine(c1,c2):
     slope = (c2.y - c1.y)/(c2.x - c1.x)
     current = co2D(c1.x,c1.y)
@@ -90,8 +128,37 @@ def Line(c1,c2):
             for indx in range(len(out)):
                 out[indx] = out[indx].ref()
     return out
-def Line3D(w1,w2):
-    return Line(w1.project(),w2.project())
+def Line3D(w1,w2,focal=dim):
+    return Line(w1.project(focal),w2.project(focal))
+
+class wireframe:
+    def __init__(self,coordset,lineset):
+        self.coset = coordset
+        self.lset  = lineset
+    def __repr__(self):
+        return f'{self.coset} ++ {self.lset}'
+    def rotate(self,axis,angle):
+        out = self.coset + []
+        for indx in range(len(out)):
+            out[indx] = out[indx].rotate(axis,angle)
+        return wireframe(out,self.lset)
+    def project(self):
+        for indx in range(len(self.coset)):
+            self.coset[indx] = self.coset[indx].project()
+    def lines(self,focal=dim):
+        points = []
+        for each in self.lset:
+            points += Line3D(self.coset[each[0]],self.coset[each[1]],focal)
+        return points
+def Cube(big=32,depth=16):
+    t = int(0.5*big)
+    d = int(0.5*dim)
+    pointset = [ co3D(d-t,d-t,depth), co3D(d-t,d+t,depth),
+        co3D(d+t,d-t,depth), co3D(d+t,d+t,depth),
+        co3D(d-t,d-t,depth+big), co3D(d-t,d+t,depth+big),
+        co3D(d+t,d-t,depth+big), co3D(d+t,d+t,depth+big) ]
+    lineset = [(0,1),(0,2),(1,3),(2,3),(4,5),(4,6),(5,7),(6,7),(0,4),(1,5),(2,6),(3,7)]
+    return wireframe(pointset, lineset)
 
 emptygrid = [
     '                                                                                                                                ',
@@ -160,28 +227,20 @@ emptygrid = [
 def plot(colist):
     grid = emptygrid + ['']
     for coord in colist:
+        if not coord.domain:
+            continue
         grid[-coord.y-1] = (grid[-coord.y-1][:2*coord.x] + 
         '[]' + grid[-coord.y-1][2*coord.x+2:])
     for indx in range(-len(grid),0):
         print(grid[indx])
 
-def Cube32(big,depth): #ignore this cancer its for testing
-    t = big/2
-
-    p1 = co3D(dim/2-t,dim/2-t,depth).project()
-    p2 = co3D(dim/2-t,dim/2+t,depth).project()
-    p3 = co3D(dim/2+t,dim/2-t,depth).project()
-    p4 = co3D(dim/2+t,dim/2+t,depth).project()
-    p5 = co3D(dim/2-t,dim/2-t,depth+big).project()
-    p6 = co3D(dim/2-t,dim/2+t,depth+big).project()
-    p7 = co3D(dim/2+t,dim/2-t,depth+big).project()
-    p8 = co3D(dim/2+t,dim/2+t,depth+big).project()
-
-    structure = (Line(p1,p2) + Line(p1,p3) + Line(p4,p2) + Line(p4,p3)
-    + Line(p1,p5) + Line(p2,p6) + Line(p3,p7) + Line(p4,p8)
-    + Line(p5,p6) + Line(p5,p7) + Line(p8,p6) + Line(p8,p7) )
-
-    return structure
-
-print('based lines have arrived')
+print('based rendering has arrived')
 based = True
+
+def spinspin(dr='y')
+    angle = 0
+    while angle <= pm.pi:
+        plot(
+            Cube(32,16).rotate(dr,angle).lines(128)
+        )
+        angle += pm.pi / 120

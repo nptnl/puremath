@@ -264,21 +264,27 @@ class angle:
         return angle(s1.one+s2.one)
     def __sub__(s1,s2):
         return angle(s1.one-s2.one)
-    def sin(self):
-        x = self.rad
-        return (ixp(x) - ixp(-x))/comp(0,2)
-    def cos(self):
-        x = self.rad
-        return (ixp(x) + ixp(-x))/2
-    def tan(self):
-        x = self.rad
-        return (ixp(x)-ixp(-x))/(ixp(x)+ixp(-x)) * -ii
-    def csc(self):
-        return i1 / self.sin()
-    def sec(self):
-        return i1 / self.cos()
-    def cot(self):
-        return i1 / self.tan()
+
+def sin(x):
+    if isinstance(x,angle):
+        inp = x.rad
+    else:
+        inp = x
+    return (ixp(inp) - ixp(-inp))/comp(0,2)
+def cos(x):
+    if isinstance(x,angle):
+        inp = x.rad
+    else:
+        inp = x
+    return (ixp(inp) + ixp(-inp))/2
+def tan(x):
+    return sin(x) / cos(x)
+def csc(x):
+    return i1 / sin(x)
+def sec(x):
+    return i1 / cos(x)
+def cot(x):
+    return cos(x) / sin(x)
 def acos(x):
     return -ii*ln(sqrt(x*x-1)[0]+x)
 def asin(x):
