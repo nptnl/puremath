@@ -158,7 +158,14 @@ def Cube(big=32,depth=16):
         co3D(d-t,d-t,depth+big), co3D(d-t,d+t,depth+big),
         co3D(d+t,d-t,depth+big), co3D(d+t,d+t,depth+big) ]
     lineset = [(0,1),(0,2),(1,3),(2,3),(4,5),(4,6),(5,7),(6,7),(0,4),(1,5),(2,6),(3,7)]
-    return wireframe(pointset, lineset)
+    return wireframe(pointset,lineset)
+def Pyramid(big=32,depth=16):
+    t = int(0.5*big)
+    d = int(0.5*dim)
+    pointset = [ co3D(d-t,d-t,depth), co3D(d+t,d-t,depth),
+    co3D(d-t,d-t,depth+big), co3D(d+t,d-t,depth+big), co3D(d,d+t/3,depth+t) ]
+    lineset = [(0,1),(0,2),(1,3),(2,3),(0,4),(1,4),(2,4),(3,4)]
+    return wireframe(pointset,lineset)
 
 emptygrid = [
     '                                                                                                                                ',
@@ -226,21 +233,23 @@ emptygrid = [
     '                                                                                                                                ']
 def plot(colist):
     grid = emptygrid + ['']
+    output = ''
     for coord in colist:
         if not coord.domain:
             continue
         grid[-coord.y-1] = (grid[-coord.y-1][:2*coord.x] + 
         '[]' + grid[-coord.y-1][2*coord.x+2:])
     for indx in range(-len(grid),0):
-        print(grid[indx])
+        output += grid[indx] + '\n'
+    print(output)
 
 print('based rendering has arrived')
 based = True
 
-def spinspin(dr='y'):
+def spinspin(shape=Cube,dr='y'):
     angle = 0
     while angle <= pm.pi:
         plot(
-            Cube(32,16).rotate(dr,angle).lines(128)
+            shape(32,16).rotate(dr,angle).lines(64)
         )
         angle += pm.pi / 120

@@ -26,6 +26,12 @@
 
 - A variable `based` thats always `True`
 
+- 2D line rendering on a 64x64 grid in the terminal (given two endpoints)
+
+- 3D point rendering (outputting a projected 2D point)
+
+- 3D wireframe objects that can be rotated around all axes
+
 ## Math reading:
 *isn't it crazy how such complicated processes are required for functions used in simple calculators?*
 
