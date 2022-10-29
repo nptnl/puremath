@@ -38,30 +38,15 @@ class co3D:
     def rotate(self,axis,angle):
         d = 0.5 * dim
         x,y,z = self.x-d, self.y-d, self.z-d
-        if axis == 'z': #theres probably some optimization i'll make later
-            mag = abs(pm.comp(x,y))
-            if x == 0:
-                angle1 = pm.pi / 2
-            else:
-                angle1 = propatan(y,x).r
-            new = pm.ixp(angle1+angle) * mag
-            return co3D(new.r+d, new.i+d, z+d).whole()
+        if axis == 'x':
+            value = pm.comp(y,z) * pm.ixp(angle)
+            return co3D(x+d,value.r+d,value.i+d)
         elif axis == 'y':
-            mag = abs(pm.comp(x,z))
-            if x == 0:
-                angle1 = pm.pi / 2
-            else:
-                angle1 = propatan(z,x).r
-            new = pm.ixp(angle1+angle) * mag
-            return co3D(new.r+d, y+d, new.i+d).whole()
-        elif axis == 'x':
-            mag = abs(pm.comp(y,z))
-            if y == 0:
-                angle1 = pm.pi / 2
-            else:
-                angle1 = propatan(z,y).r
-            new = pm.ixp(angle1+angle) * mag
-            return co3D(x+d, new.r+d, new.i+d).whole()
+            value = pm.comp(x,z) * pm.ixp(angle)
+            return co3D(value.r+d,y+d,value.i+d)
+        elif axis == 'z':
+            value = pm.comp(x,y) * pm.ixp(angle)
+            return co3D(value.r+d,value.i+d,z+d)
 def basicLine(c1,c2):
     slope = (c2.y - c1.y)/(c2.x - c1.x)
     current = co2D(c1.x,c1.y)
@@ -248,8 +233,8 @@ based = True
 
 def spinspin(shape=Cube,dr='y'):
     angle = 0
-    while angle <= pm.pi:
+    while angle <= pm.tau:
         plot(
             shape(32,16).rotate(dr,angle).lines(64)
         )
-        angle += pm.pi / 120
+        angle += 0.01 * pm.pi

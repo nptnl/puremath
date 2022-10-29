@@ -26,16 +26,15 @@
 
 - Complex numbers in polar form `r*e^(a*iπ)` (with `*,/`)
 
-- A variable `based` thats always `True`
-
 - 2D line rendering on a 64x64 grid in the terminal (given two endpoints)
 
 - 3D point rendering (outputting a projected 2D point)
 
 - 3D wireframe objects that can be rotated around all axes
 
-## Math reading:
-such complex processes in common math functions, yes?
+- A variable `based` thats always `True`
+
+## Math wikipedia to understand functions:
 
 https://en.wikipedia.org/wiki/Calculus
 

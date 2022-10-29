@@ -2,12 +2,10 @@
 
 ***all items are tentative and might not happen ever***
 
-- square-root and natural-log objects for more exact storage
+- fix bug when rotating 3D wireframes around two axes at once
 
 - polynomial long division
 
-- manual approximation for derivatives and integrals using the limit definition and riemann sums (for functions that are literally functions in python)?
-
 - quaternions! *(probably in their own special world because main.py is set up for complex objects specifically)*
 
-- fraction objects (already coded) with decimal function, along with other number-related functions
+- rational-number or fraction objects (for exact numbers), with square-root and/or natural-log objects for irrational
