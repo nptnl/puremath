@@ -1,11 +1,6 @@
 # four bones five bone (64x64)
 import main as pm
 dim  = 64
-
-def propatan(y,x):
-    if y > 0:
-        return pm.atan(y/x)
-    return pm.atan(y/x) + pm.pi
 class co2D:
     def __init__(self,x,y):
         self.x = x
@@ -22,6 +17,11 @@ class co2D:
         return co2D(self.y,self.x)
     def ref(self):
         return co2D(self.x,-self.y+dim)
+    def rotate(self,angle):
+        d = 0.5 * dim
+        x,y = self.x-d,self.y-d
+        value = pm.comp(x,y) * pm.ixp(angle)
+        return co2D(value.r+d,value.i+d).whole()
 class co3D:
     def __init__(self,x,y,z):
         self.x = x
@@ -116,7 +116,23 @@ def Line(c1,c2):
 def Line3D(w1,w2,focal=dim):
     return Line(w1.project(focal),w2.project(focal))
 
-class wireframe:
+class frame2D:
+    def __init__(self,coordset,lineset):
+        self.coset = coordset
+        self.lset = lineset
+    def __repr__(self):
+        return f'{self.coset} ++ {self.lset}'
+    def rotate(self,angle):
+        out = self.coset + []
+        for indx in range(len(out)):
+            out[indx] = out[indx].rotate(angle)
+        return frame2D(out,self.lset)
+    def lines(self):
+        points = []
+        for each in self.lset:
+            points += Line(self.coset[each[0]],self.coset[each[1]])
+        return points
+class frame3D:
     def __init__(self,coordset,lineset):
         self.coset = coordset
         self.lset  = lineset
@@ -126,7 +142,7 @@ class wireframe:
         out = self.coset + []
         for indx in range(len(out)):
             out[indx] = out[indx].rotate(axis,angle)
-        return wireframe(out,self.lset)
+        return frame3D(out,self.lset)
     def project(self):
         for indx in range(len(self.coset)):
             self.coset[indx] = self.coset[indx].project()
@@ -135,22 +151,14 @@ class wireframe:
         for each in self.lset:
             points += Line3D(self.coset[each[0]],self.coset[each[1]],focal)
         return points
-def Cube(big=32,depth=16):
-    t = int(0.5*big)
-    d = int(0.5*dim)
-    pointset = [ co3D(d-t,d-t,depth), co3D(d-t,d+t,depth),
-        co3D(d+t,d-t,depth), co3D(d+t,d+t,depth),
-        co3D(d-t,d-t,depth+big), co3D(d-t,d+t,depth+big),
-        co3D(d+t,d-t,depth+big), co3D(d+t,d+t,depth+big) ]
-    lineset = [(0,1),(0,2),(1,3),(2,3),(4,5),(4,6),(5,7),(6,7),(0,4),(1,5),(2,6),(3,7)]
-    return wireframe(pointset,lineset)
-def Pyramid(big=32,depth=16):
-    t = int(0.5*big)
-    d = int(0.5*dim)
-    pointset = [ co3D(d-t,d-t,depth), co3D(d+t,d-t,depth),
-    co3D(d-t,d-t,depth+big), co3D(d+t,d-t,depth+big), co3D(d,d+t/3,depth+t) ]
-    lineset = [(0,1),(0,2),(1,3),(2,3),(0,4),(1,4),(2,4),(3,4)]
-    return wireframe(pointset,lineset)
+
+square = frame2D([ co2D(16,16), co2D(16,48), co2D(48,16), co2D(48,48) ],
+    [ (0,1),(0,2),(1,3),(2,3) ])
+cube = frame3D([ co3D(16,16,16), co3D(16,48,16), co3D(48,16,16), co3D(48,48,16),
+        co3D(16,16,48), co3D(16,48,48), co3D(48,16,48), co3D(48,48,48) ],
+        [ (0,1),(0,2),(1,3),(2,3),(4,5),(4,6),(5,7),(6,7),(0,4),(1,5),(2,6),(3,7) ])
+pyramid = frame3D([ co3D(16,24,16), co3D(48,24,16), co3D(16,24,48), co3D(48,24,48), co3D(32,40,32) ],
+    [ (0,1),(0,2),(1,3),(2,3),(0,4),(1,4),(2,4),(3,4) ])
 
 emptygrid = [
     '                                                                                                                                ',
@@ -228,13 +236,19 @@ def plot(colist):
         output += grid[indx] + '\n'
     print(output)
 
+def realspin(shape,axis='y'):
+    import time
+    angle = 0
+    if isinstance(shape,frame2D):
+        while True:
+            plot(shape.rotate(angle).lines())
+            angle += 0.0314159
+            time.sleep(0.02)
+    elif isinstance(shape,frame3D):
+        while True:
+            plot(shape.rotate(axis,angle).lines())
+            angle += 0.0314159
+            time.sleep(0.02)
+
 print('based rendering has arrived')
 based = True
-
-def spinspin(shape=Cube,dr='y'):
-    angle = 0
-    while angle <= pm.tau:
-        plot(
-            shape(32,16).rotate(dr,angle).lines(64)
-        )
-        angle += 0.01 * pm.pi
