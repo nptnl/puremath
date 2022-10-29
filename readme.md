@@ -1,6 +1,8 @@
 # based math has arrived
 
-*This is a Python library designed to include some **very cool** math operations without relying on any other modules/libraries. I know it's slow, it's a personal project and I don't care.*
+*This is a Python math library designed to encode some **very cool** math operations without relying on any other libraries. I know it's slow, it's a personal project and I don't care.*
+
+*In addition to ignoring Python's math and cmath modules and any others, I also chose to ignore Python's `complex` objects and all forms of the exponentiation operator `**`.*
 
 ## We have:
 
@@ -10,9 +12,9 @@
  `poly([3,2,1]) == 3x2 + 2x + 1` 
  with `+,-,*,` synthetic division, derivatives and antiderivatives, evalutation, and complete (approximate) solving
 
- - Newton's method of computing complex polynomial solutions and all roots of a number
+- Newton's method of computing complex polynomial solutions and all roots of a number
 
- - The complex exponential function, using a 12-term Taylor polynomial that is accurate for -3 < x < 3
+- The complex exponential function, using a 12-term Taylor polynomial that is accurate for -3 < x < 3
 
 - Logarithms using Newton's method on this Taylor polynomial
 
@@ -33,7 +35,7 @@
 - 3D wireframe objects that can be rotated around all axes
 
 ## Math reading:
-*isn't it crazy how such complicated processes are required for functions used in simple calculators?*
+such complex processes in common math functions, yes?
 
 https://en.wikipedia.org/wiki/Calculus
 
