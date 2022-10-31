@@ -265,7 +265,6 @@ class angle:
         return angle(s1.one+s2.one)
     def __sub__(s1,s2):
         return angle(s1.one-s2.one)
-
 def sin(x):
     if isinstance(x,angle):
         inp = x.rad

@@ -1,8 +1,4 @@
-# i2 == j2 == k2 == ijk == -1
-# ij == k, ji == -k
-# ki == j, ik == -j
-# jk == i, kj == -i
-
+# all four of your grandparents ;)
 class quat:
     def __init__(self,real,imag,jmag,kmag):
         self.r, self.i, self.j, self.k = real,imag,jmag,kmag

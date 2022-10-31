@@ -2,6 +2,8 @@
 
 ***all items are tentative and might not happen ever***
 
+- make ppm image rendering un-cancerous
+
 - polynomial long division
 
 - define more functions for quaternions
@@ -14,4 +16,4 @@
 
 - compund ppm files into a video for real-time translation and rotation
 
-- fatou set and mandelbrot set fractals in ppm
+- z*z + c fractals in ppm

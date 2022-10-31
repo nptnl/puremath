@@ -1,4 +1,4 @@
-# four bones five bone (64x64)
+# bones
 import pm
 dim  = 64
 class co2D:
@@ -249,12 +249,12 @@ def plot(colist):
     for indx in range(-len(grid),0):
         output += grid[indx] + '\n'
     print(output)
-def image(colist):
+def image(colist,big=dim):
     ppm = open('./plots/current.ppm','w') # will rewrite this file, to save an image just rename it
-    ppm.write('P3\n' + f'{dim} {dim}\n' + '1\n')
-    string = '0 ' * 64 * 64 * 3
+    ppm.write('P3\n' + f'{big} {big}\n' + '1\n')
+    string = '0 ' * big * big * 3
     for coord in colist:
-        position = (128*3*(-coord.y+dim)) + (6*coord.x)
+        position = (big*6*(big-coord.y)) + (6*coord.x)
         string = string[:position] + '1 1 1 ' + string[position+6:]
     ppm.write(string + '\n')
     ppm.close()
