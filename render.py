@@ -1,5 +1,5 @@
 # four bones five bone (64x64)
-import main as pm
+import pm
 dim  = 64
 class co2D:
     def __init__(self,x,y):
@@ -13,6 +13,8 @@ class co2D:
         return f'2D({self.x},{self.y})'
     def whole(self):
         return co2D(round(self.x),round(self.y))
+    def __add__(s1,s2): # translation
+        return co2D(s1.x+s2.x,s1.y+s2.y)
     def swap(self):
         return co2D(self.y,self.x)
     def ref(self):
@@ -35,6 +37,8 @@ class co3D:
         return co2D(Px,Py).whole()
     def whole(self):
         return co3D(round(self.x),round(self.y),round(self.z))
+    def __add__(s1,s2):
+        return co3D(s1.x+s2.x,s1.y+s2.y,s1.z+s2.z)
     def rotate(self,axis,angle):
         d = 0.5 * dim
         x,y,z = self.x-d, self.y-d, self.z-d
@@ -122,6 +126,10 @@ class frame2D:
         self.lset = lineset
     def __repr__(self):
         return f'{self.coset} ++ {self.lset}'
+    def __add__(s,co):
+        for indx in range(len(s.coset)):
+            s.coset[indx] += co
+        return s
     def rotate(self,angle):
         out = self.coset + []
         for indx in range(len(out)):
@@ -138,6 +146,10 @@ class frame3D:
         self.lset  = lineset
     def __repr__(self):
         return f'{self.coset} ++ {self.lset}'
+    def __add__(s,co):
+        for indx in range(len(s.coset)):
+            s.coset[indx] += co
+            return s
     def rotate(self,axis,angle):
         out = self.coset + []
         for indx in range(len(out)):
@@ -159,6 +171,8 @@ cube = frame3D([ co3D(16,16,16), co3D(16,48,16), co3D(48,16,16), co3D(48,48,16),
         [ (0,1),(0,2),(1,3),(2,3),(4,5),(4,6),(5,7),(6,7),(0,4),(1,5),(2,6),(3,7) ])
 pyramid = frame3D([ co3D(16,24,16), co3D(48,24,16), co3D(16,24,48), co3D(48,24,48), co3D(32,40,32) ],
     [ (0,1),(0,2),(1,3),(2,3),(0,4),(1,4),(2,4),(3,4) ])
+ssquare = frame2D([ co2D(24,24), co2D(24,40), co2D(40,24), co2D(40,40) ],
+    [(0,1),(0,2),(1,3),(2,3) ])
 
 emptygrid = [
     '                                                                                                                                ',
@@ -236,6 +250,7 @@ def plot(colist):
         output += grid[indx] + '\n'
     print(output)
 
+# testing purposes
 def realspin(shape,axis='y'):
     import time
     angle = 0
@@ -249,6 +264,15 @@ def realspin(shape,axis='y'):
             plot(shape.rotate(axis,angle).lines())
             angle += 0.0314159
             time.sleep(0.02)
+def spinmove(shape,axis='y',move=1):
+    import time
+    angle = 0
+    tran = 0
+    while True:
+        plot((shape.rotate(angle) + co2D(tran,0)).lines())
+        tran = round(16 * pm.cos(angle).r)
+        angle += 0.0314159
+        time.sleep(0.02)
 
 print('based rendering has arrived')
 based = True

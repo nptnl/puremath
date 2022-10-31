@@ -29,7 +29,8 @@ class comp:
     def conj(self):
         return comp(self.r,-self.i)
     def inv(self):
-        return self.conj() * (1/(self*self.conj()).r)
+        divisor = self.r*self.r + self.i*self.i
+        return comp(self.r/divisor, -self.i/divisor)
     def __truediv__(s1,s2):
         if isinstance(s2,comp):
             return s1 * s2.inv()

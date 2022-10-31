@@ -1,4 +1,4 @@
-# very in-depth documentation of every function
+# somewhat in-depth documentation of every function
 
 **`class comp:` Complex number objects**
 
@@ -100,4 +100,24 @@
 
 `__truediv__(s1,s2)` divides objects by dividing radii and subtracting angles
 
-*more coming soon (some of it might be on todo.md)*
+**`quat.py`: Quaternions!**
+
+`__init__(self,real,imag,jmag,kmag)` takes four real numbers as coefficients to create a quaternion object
+
+`__repr__(self)` creates a quaternion string similar to that of `comp`s
+
+`__neg__(self)` negates all coefficients to negate the quaternion
+
+`__add__(s1,s2)` adds all coefficients to add quaternions
+
+`__sub__(s1,s2)` subtracts all coefficients to subtract quaternions
+
+`__mul__(s1,s2)` is strange becuase quaternion multiplication is non-commutative, but uses just a few multiplications and additions to properly multiply quaternions
+
+`conj(self)` negates all imaginary part coefficents to create a quaternion conjugate
+
+`inv(self)` uses the conjugate to compute the inverse of a quaternion
+
+`__truediv__(s1,s2)` simply multiplies one quaternion by the other's inverse to divide quaternions properly
+
+*more coming soon (some of it might be on `todo.md`)*

@@ -32,6 +32,8 @@
 
 - 3D wireframe objects that can be rotated around all axes
 
+- Quaternions with `+`,`-`,`*`,`/`
+
 - A variable `based` thats always `True`
 
 ## Math wikipedia to understand functions:
@@ -47,5 +49,7 @@ https://en.wikipedia.org/wiki/Taylor_series
 https://en.wikipedia.org/wiki/Exponential_function#Complex_plane
 
 https://en.wikipedia.org/wiki/Complex_logarithm
+
+https://en.wikipedia.org/wiki/Quaternion
 
 youtube.com/3blue1brown
