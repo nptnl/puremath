@@ -53,3 +53,6 @@ https://en.wikipedia.org/wiki/Complex_logarithm
 https://en.wikipedia.org/wiki/Quaternion
 
 youtube.com/3blue1brown
+
+<img src="./memes/its-all-polynomials.png" width="50%">
+<img src="./memes/chad-quaternions.png" width="50%">
