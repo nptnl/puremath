@@ -249,6 +249,15 @@ def plot(colist):
     for indx in range(-len(grid),0):
         output += grid[indx] + '\n'
     print(output)
+def image(colist):
+    ppm = open('./plots/current.ppm','w') # will rewrite this file, to save an image just rename it
+    ppm.write('P3\n' + f'{dim} {dim}\n' + '1\n')
+    string = '0 ' * 64 * 64 * 3
+    for coord in colist:
+        position = (128*3*(-coord.y+dim)) + (6*coord.x)
+        string = string[:position] + '1 1 1 ' + string[position+6:]
+    ppm.write(string + '\n')
+    ppm.close()
 
 # testing purposes
 def realspin(shape,axis='y'):
@@ -261,7 +270,7 @@ def realspin(shape,axis='y'):
             time.sleep(0.02)
     elif isinstance(shape,frame3D):
         while True:
-            plot(shape.rotate(axis,angle).lines())
+            plot(shape.rotate('x',angle).rotate('y',angle).rotate('z',angle).lines())
             angle += 0.0314159
             time.sleep(0.02)
 def spinmove(shape,axis='y',move=1):

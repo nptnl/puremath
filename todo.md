@@ -11,3 +11,7 @@
 - 4D coordinate objects with 4D rotation! project into 3D space and then project that into 2D space -_-
 
 - integrate quaternions with reals and comps
+
+- compund ppm files into a video for real-time translation and rotation
+
+- fatou set and mandelbrot set fractals in ppm
