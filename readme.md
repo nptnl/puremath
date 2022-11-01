@@ -2,7 +2,7 @@
 
 *This is a Python math library designed to encode some **very cool** math operations without relying on any other libraries. I know it's slow, it's a personal project and I don't care.*
 
-*In addition to ignoring Python's math and cmath modules and any others, I also chose to ignore Python's `complex` objects and all forms of the exponentiation operator `**`.*
+*In addition to ignoring Python's math and cmath modules and any others, I also chose to ignore Python's `complex` objects and all forms of the exponentiation operator `**`. Everything here is built from scratch; I like my math completely homemade.*
 
 ## We have:
 
@@ -33,6 +33,8 @@
 - 3D wireframe objects that can be rotated around all axes
 
 - Quaternions with `+`,`-`,`*`,`/`
+
+- z2 + C fatou and mandelbrot set fractal rendering
 
 - A variable `based` thats always `True`
 

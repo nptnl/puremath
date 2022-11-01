@@ -2,8 +2,6 @@
 
 ***all items are tentative and might not happen ever***
 
-- make ppm image rendering un-cancerous
-
 - polynomial long division
 
 - define more functions for quaternions
@@ -16,4 +14,4 @@
 
 - compund ppm files into a video for real-time translation and rotation
 
-- z*z + c fractals in ppm
+- create custom image and video format lmao

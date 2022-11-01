@@ -36,7 +36,6 @@ class quat:
         return quat(self.r/divisor, -self.i/divisor, -self.j/divisor, -self.k/divisor)
     def __truediv__(s1,s2):
         return s1 * s2.inv()
-
 q1,qi,qj,qk = quat(1,0,0,0), quat(0,1,0,0), quat(0,0,1,0), quat(0,0,0,1)
 
 based = True

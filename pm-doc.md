@@ -120,4 +120,10 @@
 
 `__truediv__(s1,s2)` simply multiplies one quaternion by the other's inverse to divide quaternions properly
 
+**`fractal.py`: Fractals!**
+
+`julia(cr=0,ci=0,size=64,iterate=64)` renders a fatou set fractal using formula `z = z*z + c`, where `z` and `c` are stored as separate real and imaginary parts
+
+`mandelbrot(cr=0,ci=0,size=64,iterate=64)` renders the mandelbrot set fractal using formula `z = z*z + c`, where `z` and `c` are stored as separate real and imaginary parts
+
 *more coming soon (some of it might be on `todo.md`)*
