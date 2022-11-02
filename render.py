@@ -1,6 +1,6 @@
 # bones
 import pm
-dim  = 128
+dim  = 64
 class co2D:
     def __init__(self,x,y):
         self.x = x

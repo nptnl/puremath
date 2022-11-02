@@ -15,3 +15,5 @@
 - compund ppm files into a video for real-time translation and rotation
 
 - create custom image and video format lmao
+
+- create custom voxel space lmao
