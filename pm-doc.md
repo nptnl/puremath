@@ -1,6 +1,6 @@
 # somewhat in-depth documentation of every function
 
-**`class comp:` Complex number objects**
+### **`class comp:` Complex number objects**
 
 `__init__(self,real,imag)` inputs a real and imaginary part for a complex number in form `(a+bi)` and creates the object
 
@@ -24,7 +24,7 @@
 
 `__pow__(s1,s2)` uses `exp` and `ln` to compute complex exponentiation
 
-**`class poly:` Polynomial objects**
+### **`class poly:` Polynomial objects**
 
 `__init__(self,coef)` takes only one argument, a list of coefficients in descending exponent order, and this will include zeros for a term that is not in the polynomial
 
@@ -48,7 +48,7 @@
 
 `solve(self,y=0)` uses `newton` and `rootdiv`to find an approximate solution to a polynomial, then factor it out and repeat the process, finding all solutions to any polynomial at value `y`
 
-**More polynomial functions**
+### **More polynomial functions**
 
 `newton(p,y=0)` uses Newton's method to approximate an x-value such that `p.val(x) == y`, or simply the solutions of a polynomial
 
@@ -62,7 +62,7 @@
 
 `buildp(rootlist)` takes a list of numbers and builds a polynomial with those numbers as its roots
 
-**Funky exponential stuff**
+### **Funky exponential stuff**
 
 `exp(x)` uses an order-12 Taylor polynomial to approximate the exponential function e^x evaluated around x=0
 
@@ -74,7 +74,7 @@
 
 `log(n,x)` uses `log(n,x) == ln(x) / ln(n)` to compute logarithms of any base
 
-**`class angle:` Angle objects and more!**
+### **`class angle:` Angle objects and more!**
 
 `__init__(self,me,mx=1)` creates an angle object given a measure and a maximum representing the measure of a full circle; in this notation, 30° is `angle(30,360)` and one-third of a circle is `angle(1,3)` - this function also fixes the measure to a value between 0 and 1
 
@@ -88,7 +88,7 @@
 
 `asin(x), acos(x), atan(x), acsc(x), asec(x),` and `acot(x)` use natural logarithms and square roots to perform inverse trigonometric functions, returning an angle object
 
-**`class polar:` Complex numbers in polar form**
+### **`class polar:` Complex numbers in polar form**
 
 `__init__(self,radius,angle):` creates the object while measure-fixing the angle
 
@@ -100,7 +100,7 @@
 
 `__truediv__(s1,s2)` divides objects by dividing radii and subtracting angles
 
-**`quat.py`: Quaternions!**
+### **`quat.py`: Quaternions!**
 
 `__init__(self,real,imag,jmag,kmag)` takes four real numbers as coefficients to create a quaternion object
 
@@ -120,7 +120,7 @@
 
 `__truediv__(s1,s2)` simply multiplies one quaternion by the other's inverse to divide quaternions properly
 
-**`fractal.py`: Fractals!**
+### **`fractal.py`: Fractals!**
 
 `julia(cr=0,ci=0,size=64,iterate=64)` renders a fatou set fractal using formula `z = z*z + c`, where `z` and `c` are stored as separate real and imaginary parts
 
