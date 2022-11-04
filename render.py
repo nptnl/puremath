@@ -250,14 +250,15 @@ def plot(colist):
         output += grid[indx] + '\n'
     print(output)
 def image(colist,big=dim):
-    ppm = open('./plots/current.ppm','w') # will rewrite this file, to save an image just rename it
-    ppm.write('P3\n' + f'{big} {big}\n' + '1\n')
-    string = '0 ' * big * big * 3
+    ppm = open('./plots/current.npxl','w') # will rewrite this file, to save an image just rename it
+    ppm.write(f'{big} {big}\n1 1\n')
+    string = '0' * big * big
     for coord in colist:
-        position = (big*6*(big-coord.y)) + (6*coord.x)
-        string = string[:position] + '1 1 1 ' + string[position+6:]
+        position = (big*(big-coord.y)) + (coord.x)
+        string = string[:position] + '1' + string[position+1:]
     ppm.write(string + '\n')
     ppm.close()
+    print('NPXL render at {big}px complete')
 
 # testing purposes
 def realspin(shape,axis='y'):

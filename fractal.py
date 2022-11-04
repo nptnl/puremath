@@ -34,6 +34,8 @@ def ispace(func,c,size=128,iterate=32):
         for b in colorlist:
             pxl.write(dec2hex(b * 16 // iterate))
         pxl.write('\n')
+    pxl.close()
+    print(f'NPXL render at {2*size}px, iterate {iterate} complete')
 def pspace(func,size=128,iterate=64,section=comp(0,0)):
     pxl = open('./plots/current.npxl','w')
     pxl.write(f'{2*size} {2*size}\n1 16\n')
@@ -52,6 +54,8 @@ def pspace(func,size=128,iterate=64,section=comp(0,0)):
         for b in colorlist:
             pxl.write(dec2hex(b * 16 // iterate))
         pxl.write('\n')
+    pxl.close()
+    print(f'NPXL render at {2*size}px, iterate {iterate} complete')
 
 def quadra(cr=0,ci=0,size=128,iterate=32):
     pxl = open('./plots/current.npxl','w')
@@ -71,7 +75,9 @@ def quadra(cr=0,ci=0,size=128,iterate=32):
         for b in colorlist:
             pxl.write(dec2hex(b * 16 // iterate))
         pxl.write('\n')
-def mandelbrot(size=128,iterate=32,sectionr=0,sectioni=0):
+    pxl.close()
+    print(f'NPXL render at {2*size}px, iterate {iterate} complete')
+def mandelbrot(size=128,iterate=32):
     pxl = open('./plots/current.npxl','w')
     pxl.write(f'{2*size} {2*size}\n1 16\n')
     for imag in range(-size,size):
@@ -89,6 +95,8 @@ def mandelbrot(size=128,iterate=32,sectionr=0,sectioni=0):
         for b in colorlist:
             pxl.write(dec2hex(b * 16 // iterate))
         pxl.write('\n')
+    pxl.close()
+    print(f'NPXL render at {2*size}px, iterate {iterate} complete')
 
 print('based fractals have arrived')
 based = True
