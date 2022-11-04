@@ -1,7 +1,5 @@
-# fatou set and "multibrot" set plotting for
-# f(z) = z2 + c, f(z) = z3 + c
-# additional input-space and parameter space plotting for any defined function of z and c
 from pm import comp
+
 def fatou2(cr=0,ci=0,size=128,iterate=32):
     ppm = open('./plots/current.ppm','w')
     ppm.write(f'P3\n{2*size} {2*size}\n{iterate}\n')
@@ -93,7 +91,7 @@ def ispace(func,c,size=128,iterate=32):
         for b in colorlist:
             ppm.write((str(b)+' ')*3)
         ppm.write('\n')
-def pspace(func,section=comp(0,0),size=128,iterate=64):
+def pspace(func,size=128,iterate=64,section=comp(0,0)):
     ppm = open('./plots/current.ppm','w')
     ppm.write(f'P3\n{2*size} {2*size}\n{iterate}\n')
     for imag in range(-size,size):
