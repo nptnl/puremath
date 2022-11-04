@@ -238,7 +238,7 @@ emptygrid = [
     '                                                                                                                                ',
     '                                                                                                                                ',
     '                                                                                                                                ']
-def plot(colist):
+def termplot(colist):
     grid = emptygrid + ['']
     output = ''
     for coord in colist:
@@ -249,7 +249,7 @@ def plot(colist):
     for indx in range(-len(grid),0):
         output += grid[indx] + '\n'
     print(output)
-def image(colist,big=dim):
+def implot(colist,big=dim):
     ppm = open('./plots/current.npxl','w') # will rewrite this file, to save an image just rename it
     ppm.write(f'{big} {big}\n1 1\n')
     string = '0' * big * big
@@ -271,7 +271,7 @@ def realspin(shape,axis='y'):
             time.sleep(0.02)
     elif isinstance(shape,frame3D):
         while True:
-            plot(shape.rotate('x',angle).rotate('y',angle).rotate('z',angle).lines())
+            plot(shape.rotate('y',angle).lines())
             angle += 0.0314159
             time.sleep(0.02)
 def spinmove(shape,axis='y',move=1):
