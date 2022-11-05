@@ -270,19 +270,19 @@ def sin(x):
         inp = x.rad
     else:
         inp = x
-    return ixp(inp).i
+    return (ixp(inp) + ixp(-inp)) * comp(0,-0.5)
 def cos(x):
     if isinstance(x,angle):
         inp = x.rad
     else:
         inp = x
-    return ixp(inp).r
+    return (ixp(inp) + ixp(-inp)) * 0.5
 def tan(x):
     if isinstance(x,angle):
-        value = ixp(x.rad)
+        inp = x.rad
     else:
-        value = ixp(x)
-    return value.i / value.r
+        inp = x
+    return (ixp(inp) - ixp(-inp)) / (ixp(inp) + ixp(-inp))
 def csc(x):
     return sin(x).inv()
 def sec(x):

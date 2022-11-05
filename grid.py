@@ -249,15 +249,18 @@ def termplot(colist):
         output += grid[indx] + '\n'
     print(output)
 def implot(colist,big=dim):
-    ppm = open('./plots/current.npxl','w') # will rewrite this file, to save an image just rename it
-    ppm.write(f'{big} {big}\n1 1\n')
-    string = '0' * big * big
+    pxl = open('./plots/current.npxl','w')
+    pxl.write(f'{big} {big}\n2 1\n')
+    string, extra = '0' * big * big, 0
     for coord in colist:
         position = (big*(big-coord.y)) + (coord.x)
         string = string[:position] + '1' + string[position+1:]
-    ppm.write(string + '\n')
-    ppm.close()
-    print('NPXL render at {big}px complete')
+    for n in range(big):
+        string = string[:(n+1)*big+n] + '\n' + string[(n+1)*big+n:]
+    pxl.write(string)
+    pxl.close()
+    print(f'NPXL render at {big}px complete')
+
 
 # testing purposes
 def realspin(shape,axis='y'):

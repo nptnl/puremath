@@ -4,7 +4,7 @@ S = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<>'
 
 def ispace(func,c,size=128,iterate=32):
     pxl = open('./plots/current.npxl','w')
-    pxl.write(f'{2*size} {2*size}\n1 16\n')
+    pxl.write(f'{2*size} {2*size}\n16 1\n')
     for imag in range(-size,size):
         colorlist = []
         for real in range(-size,size):
@@ -24,7 +24,7 @@ def ispace(func,c,size=128,iterate=32):
     print(f'NPXL render at {2*size}px, iterate {iterate} complete')
 def pspace(func,size=128,iterate=64,section=comp(0,0)):
     pxl = open('./plots/current.npxl','w')
-    pxl.write(f'{2*size} {2*size}\n1 16\n')
+    pxl.write(f'{2*size} {2*size}\n16 1\n')
     for imag in range(-size,size):
         colorlist = []
         for real in range(-size,size):
@@ -45,7 +45,7 @@ def pspace(func,size=128,iterate=64,section=comp(0,0)):
 
 def quadra(cr=0,ci=0,size=128,iterate=32):
     pxl = open('./plots/current.npxl','w')
-    pxl.write(f'{2*size} {2*size}\n1 16\n')
+    pxl.write(f'{2*size} {2*size}\n16 1\n')
     for imag in range(-size,size):
         colorlist = []
         for real in range(-size,size):
@@ -65,7 +65,7 @@ def quadra(cr=0,ci=0,size=128,iterate=32):
     print(f'NPXL render at {2*size}px, iterate {iterate} complete')
 def mandelbrot(size=128,iterate=32,sectionr=0,sectioni=0):
     pxl = open('./plots/current.npxl','w')
-    pxl.write(f'{2*size} {2*size}\n1 16\n')
+    pxl.write(f'{2*size} {2*size}\n16 1\n')
     for imag in range(-size,size):
         colorlist = []
         for real in range(-size,size):
