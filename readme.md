@@ -34,7 +34,7 @@
 
 - Quaternions with `+`,`-`,`*`,`/`
 
-- z2 + C fatou and mandelbrot set fractal rendering
+- Input space and parameter space fractal plotting in a custom-compressed image format
 
 - A variable `based` thats always `True`
 
@@ -53,6 +53,8 @@ https://en.wikipedia.org/wiki/Exponential_function#Complex_plane
 https://en.wikipedia.org/wiki/Complex_logarithm
 
 https://en.wikipedia.org/wiki/Quaternion
+
+https://en.wikipedia.org/wiki/Julia_set
 
 youtube.com/3blue1brown
 

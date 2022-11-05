@@ -122,8 +122,10 @@
 
 ### **`fractal.py`: Fractals!**
 
-`julia(cr=0,ci=0,size=64,iterate=64)` renders a fatou set fractal using formula `z = z*z + c`, where `z` and `c` are stored as separate real and imaginary parts
+`ispace(func,c,size=128,iterate=32)` uses a given, defined function's convergence and divergence to plot an input space fractal for a given value `c`
 
-`mandelbrot(cr=0,ci=0,size=64,iterate=64)` renders the mandelbrot set fractal using formula `z = z*z + c`, where `z` and `c` are stored as separate real and imaginary parts
+`pspace(func,c,size=128,iterate=32)` uses a given, defined function's convergence and divergence to plot a parameter space fractal for starting value `section`
+
+`quadra` more efficiently plots the famous input space for `z2 + c`, and `mandelbrot` plots its even more famous parameter space
 
 *more coming soon (some of it might be on `todo.md`)*

@@ -4,6 +4,8 @@
 
 - polynomial long division
 
+- optimize exp, ln, trig and inverse trig
+
 - define more functions for quaternions
 
 - rational-number or fraction objects (for exact numbers), with square-root and/or natural-log objects for irrational
@@ -12,8 +14,10 @@
 
 - integrate quaternions with reals and comps
 
-- compund ppm files into a video for real-time translation and rotation
+- heavy fractal generation optimization
 
-- create custom image and video format lmao
+- collapse lower-base numbers into base64 even more compact storage in NPXL images
 
-- create custom voxel space lmao
+- compund NPXL files into a video for real-time translation and rotation
+
+- voxel spaces and 3D fractals
