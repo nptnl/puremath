@@ -126,6 +126,6 @@
 
 `pspace(func,c,size=128,iterate=32)` uses a given, defined function's convergence and divergence to plot a parameter space fractal for starting value `section`
 
-`quadra` plots the famous input space for `z2 + c`, and `mandelbrot` plots its even more famous parameter space
+`quadra` more efficiently plots the famous input space for `z2 + c`, and `mandelbrot` plots its even more famous parameter space
 
 *more coming soon (some of it might be on `todo.md`)*
