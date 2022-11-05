@@ -58,3 +58,4 @@ youtube.com/3blue1brown
 
 <img src="./memes/its-all-polynomials.png" width="50%">
 <img src="./memes/chad-quaternions.png" width="50%">
+<img src="./memes/thats-rough.png" width="50%">
