@@ -296,11 +296,23 @@ def asin(x):
 def atan(x):
     return ii/2 * (ln(-ii*x+1)-ln(ii*x+1))
 def asec(x):
-    return acos(i1 / x)
+    if isinstance(x,comp):
+        inp = x.inv()
+    else:
+        inp = comp(1/x,0)
+    return acos(inp)
 def acsc(x):
-    return asin(i1 / x)
+    if isinstance(x,comp):
+        inp = x.inv()
+    else:
+        inp = comp(1/x,0)
+    return asin(inp)
 def acot(x):
-    return atan(i1 / x)
+    if isinstance(x,comp):
+        inp = x.inv()
+    else:
+        inp = comp(1/x,0)
+    return atan(inp)
 class polar:
     def __init__(self,radius,angle):
         if radius < 0:
