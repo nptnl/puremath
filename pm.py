@@ -270,21 +270,25 @@ def sin(x):
         inp = x.rad
     else:
         inp = x
-    return (ixp(inp) - ixp(-inp))/comp(0,2)
+    return ixp(inp).i
 def cos(x):
     if isinstance(x,angle):
         inp = x.rad
     else:
         inp = x
-    return (ixp(inp) + ixp(-inp))/2
+    return ixp(inp).r
 def tan(x):
-    return sin(x) / cos(x)
+    if isinstance(x,angle):
+        value = ixp(x.rad)
+    else:
+        value = ixp(x)
+    return value.i / value.r
 def csc(x):
-    return i1 / sin(x)
+    return sin(x).inv()
 def sec(x):
-    return i1 / cos(x)
+    return cos(x).inv()
 def cot(x):
-    return cos(x) / sin(x)
+    return tan(x).inv()
 def acos(x):
     return -ii*ln(sqrt(x*x-1)[0]+x)
 def asin(x):

@@ -1,6 +1,7 @@
 # bones
 import pm
 dim  = 64
+d = dim >> 1
 class co2D:
     def __init__(self,x,y):
         self.x = x
@@ -20,7 +21,6 @@ class co2D:
     def ref(self):
         return co2D(self.x,-self.y+dim)
     def rotate(self,angle):
-        d = 0.5 * dim
         x,y = self.x-d,self.y-d
         value = pm.comp(x,y) * pm.ixp(angle)
         return co2D(value.r+d,value.i+d).whole()
@@ -32,15 +32,14 @@ class co3D:
     def __repr__(self):
         return f'3D({self.x},{self.y},{self.z})'
     def project(self,focal=dim):
-        Px = ((self.x-dim/2)*focal / (self.z+focal)) + dim/2
-        Py = ((self.y-dim/2)*focal / (self.z+focal)) + dim/2
+        Px = ((self.x-d)*focal / (self.z+focal)) + d
+        Py = ((self.y-d)*focal / (self.z+focal)) + d
         return co2D(Px,Py).whole()
     def whole(self):
         return co3D(round(self.x),round(self.y),round(self.z))
     def __add__(s1,s2):
         return co3D(s1.x+s2.x,s1.y+s2.y,s1.z+s2.z)
     def rotate(self,axis,angle):
-        d = 0.5 * dim
         x,y,z = self.x-d, self.y-d, self.z-d
         if axis == 'x':
             value = pm.comp(y,z) * pm.ixp(angle)

@@ -24,11 +24,10 @@ class quat:
     def __sub__(s1,s2):
         return quat(s1.r-s2.r,s1.i-s2.i,s1.j-s1.j,s1.k-s1.k)
     def __mul__(s1,s2):
-        real = s1.r*s2.r - s1.i*s2.i - s1.j*s2.j - s1.k*s2.k
-        imag = s1.r*s2.i + s1.i*s2.r + s1.j*s2.k - s1.k*s2.j
-        jmag = s1.r*s2.j - s1.i*s2.k + s1.j*s2.r + s1.k*s2.i
-        kmag = s1.r*s2.k + s1.i*s2.j - s1.j*s2.i + s1.k*s2.r
-        return quat(real,imag,jmag,kmag)
+        return quat( s1.r*s2.r - s1.i*s2.i - s1.j*s2.j - s1.k*s2.k,
+            s1.r*s2.i + s1.i*s2.r + s1.j*s2.k - s1.k*s2.j,
+            s1.r*s2.j - s1.i*s2.k + s1.j*s2.r + s1.k*s2.i,
+            s1.r*s2.k + s1.i*s2.j - s1.j*s2.i + s1.k*s2.r )
     def conj(self):
         return quat(self.r,-self.i,-self.j,-self.k)
     def inv(self):
