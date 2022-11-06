@@ -100,6 +100,24 @@
 
 `__truediv__(s1,s2)` divides objects by dividing radii and subtracting angles
 
+### **`class frac:` Rational number objects**
+
+`gcf(n1,n2)` finds the greatest common factor of two natural numbers
+
+`__init__(self,den=1)` creates a rational object by simplifying a numerator and denominator
+
+`__repr__(self)` displays the fraction
+
+`__mul__(s1,s2)` multiplies fractions very simply
+
+`inv(self)` creates the reciprocal of a fraction
+
+`__truediv__(s1,s2)` divides fractions very simply
+
+`__add__(s1,s2)` adds fractions with a few multiplication operations
+
+`__sub__(s1,s2)` subtracts fractions with a few multiplication operations
+
 ### **`quat.py`: Quaternions!**
 
 `__init__(self,real,imag,jmag,kmag)` takes four real numbers as coefficients to create a quaternion object

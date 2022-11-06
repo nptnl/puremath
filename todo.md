@@ -8,7 +8,9 @@
 
 - define more functions for quaternions
 
-- rational-number or fraction objects (for exact numbers), with square-root and/or natural-log objects for irrational
+- sqrt and/or ln objects for exact irrationals
+
+- more functions for rationals
 
 - 4D coordinate objects with 4D rotation! project into 3D space and then project that into 2D space -_-
 

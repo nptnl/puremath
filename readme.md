@@ -36,6 +36,8 @@
 
 - Input space and parameter space fractal plotting in a custom-compressed image format
 
+- Rational fraction objects that auto-simplify with `+`,`-`,`*`,`/`
+
 - A variable `based` thats always `True`
 
 ## Math wikipedia to understand functions:

@@ -330,5 +330,45 @@ class polar:
     def __truediv__(s1,s2):
         return polar(s1.r/s2.r,s1.a-s2.a)
 
+def gcf(n1,n2):
+    while n1 != n2:
+        if n1 < n2:
+            n2 -= n1
+        else:
+            n1 -= n2
+    return n1
+class frac:
+    def __init__(self,num,den=1):
+        neg = 1
+        if num < 0:
+            neg,num = -neg,-num
+        if den < 0:
+            neg,den = -neg,-den
+        if den != 1:
+            g = gcf(num,den)
+            self.n = num // g * neg
+            self.d = den // g
+        else:
+            self.n = neg*num
+            self.d = den
+    def __repr__(self):
+        return f'[{self.n}/{self.d}]'
+    def __mul__(s1,s2):
+        return frac(s1.n*s2.n,s1.d*s2.d)
+    def inv(self):
+        return frac(self.d,self.n)
+    def __truediv__(s1,s2):
+        return frac(s1.n*s2.d,s1.d*s2.n)
+    def __add__(s1,s2):
+        if isinstance(s2,frac):
+            return frac(s1.n*s1.d + s2.n*s1.d, s1.d*s2.d)
+        else:
+            return frac(s1.n+s2*s1.d,s1.d)
+    def __sub__(s1,s2):
+        if isinstance(s2,frac):
+            return frac(s1.n*s2.d - s2.n*s1.d, s1.d*s2.d)
+        else:
+            return frac(s1.n-s2*s1.d,s1.d)
+
 print('based math has arrived')
 based = True
