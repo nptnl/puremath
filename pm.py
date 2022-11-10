@@ -370,5 +370,12 @@ class frac:
         else:
             return frac(s1.n-s2*s1.d,s1.d)
 
+def nexp(x):
+    total,power = comp(0,0),i1
+    for time in range(1,20):
+        total += power
+        power *= x / time
+    return total
+
 print('based math has arrived')
 based = True
