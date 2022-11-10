@@ -23,3 +23,5 @@
 - compund NPXL files into a video for real-time translation and rotation
 
 - voxel spaces and 3D fractals
+
+- rewrite the whole project in Rust lmao
