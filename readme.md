@@ -4,6 +4,8 @@
 
 *In addition to ignoring Python's math and cmath modules and any others, I also chose to ignore Python's `complex` objects and all forms of the exponentiation operator `**`. Everything here is built from scratch; I like my math completely homemade.*
 
+---
+
 ## We have:
 
 - Complex number objects, stored in `(a+bi) -> comp(a,b)`(with `+,-,*,/,**`)
@@ -40,6 +42,10 @@
 
 - A variable `based` thats always `True`
 
+Find a more in-depth documentation of most functions in [todo.md](./todo.md)
+
+---
+
 ## Math wikipedia to understand functions:
 
 https://en.wikipedia.org/wiki/Calculus
@@ -59,6 +65,11 @@ https://en.wikipedia.org/wiki/Quaternion
 https://en.wikipedia.org/wiki/Julia_set
 
 youtube.com/3blue1brown
+
+---
+
+see my current project, implementing all these functions (and many more) in Rust:
+**[Ferrum](https://github.com/nptnl/ferrum)**
 
 <img src="./memes/its-all-polynomials.png" width="50%">
 <img src="./memes/chad-quaternions.png" width="50%">

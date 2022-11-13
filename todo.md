@@ -25,3 +25,4 @@
 - voxel spaces and 3D fractals
 
 - rewrite the whole project in Rust lmao
+(check out [Ferrum](https://github.com/nptnl/ferrum))
