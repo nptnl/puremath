@@ -42,7 +42,7 @@
 
 - A variable `based` thats always `True`
 
-Find a more in-depth documentation of most functions in [todo.md](./todo.md)
+Find a more in-depth documentation of most functions in [pm_doc.md](./pm_doc.md)
 
 ---
 
