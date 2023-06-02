@@ -1,6 +1,6 @@
 # bones
 import pm
-dim  = 64
+dim = 64
 d = dim >> 1
 class co2D:
     def __init__(self,x,y):
@@ -268,12 +268,12 @@ def realspin(shape,axis='y'):
     angle = 0
     if isinstance(shape,frame2D):
         while True:
-            plot(shape.rotate(angle).lines())
+            termplot(shape.rotate(angle).lines())
             angle += 0.0314159
             time.sleep(0.02)
     elif isinstance(shape,frame3D):
         while True:
-            plot(shape.rotate('y',angle).lines())
+            termplot(shape.rotate('y',angle).lines())
             angle += 0.0314159
             time.sleep(0.02)
 def spinmove(shape,axis='y',move=1):
@@ -281,7 +281,7 @@ def spinmove(shape,axis='y',move=1):
     angle = 0
     tran = 0
     while True:
-        plot((shape.rotate(angle) + co2D(tran,0)).lines())
+        termplot((shape.rotate(angle) + co2D(tran,0)).lines())
         tran = round(16 * pm.cos(angle).r)
         angle += 0.0314159
         time.sleep(0.02)

@@ -270,7 +270,7 @@ def sin(x):
         inp = x.rad
     else:
         inp = x
-    return (ixp(inp) + ixp(-inp)) * comp(0,-0.5)
+    return (ixp(inp) - ixp(-inp)) * comp(0.0, -0.5)
 def cos(x):
     if isinstance(x,angle):
         inp = x.rad
