@@ -26,3 +26,9 @@
 
 - rewrite the whole project in Rust lmao
 (check out [Ferrum](https://github.com/nptnl/ferrum))
+
+- do it again but with a repl [Solvation](https://github.com/nptnl/solvation)
+
+- do it again in a library [basemath](https://github.com/nptnl/basemath)
+
+- return here for linear algebra
