@@ -7,6 +7,13 @@ def vecs_to_cols(vecs):
     for each in range(len(vecs)):
         result.D[each] = vecs[each].D[0]
     return result
+def cols_to_vecs(mtx):
+    result = []
+    for col in mtx.D:
+        next = vec(mtx.rows)
+        next.D[0] = col
+        result.append(next)
+    return result
 def diag(values):
     result = matrix(len(values), len(values))
     for indx in range(len(values)):
@@ -108,6 +115,21 @@ class matrix:
                     continue
                 result.D[col + col_add][row + row_add] = self.D[col][row]
         return result
+    def slice(self, indx):
+        data = []
+        if indx < 0:
+            result = matrix(self.rows, -indx)
+            for col in range(indx, 0):
+                data.append(self.D[col])
+            result.D = data
+            return result
+        else:
+            result = matrix(self.rows, indx)
+            for col in range(0, indx):
+                data.append(self.D[col])
+            result.D = data
+            return result
+
     def det(self):
         if self.rows != self.cols:
             raise ValueError("matrix must be square to have a determinant")
@@ -176,7 +198,7 @@ class matrix:
         runcol = 0
         for runrow in range(self.rows):
             pivot_in_this_col = result.put_value_in_topleft(runcol, runrow)
-            if pivot_in_this_col:
+            if pivot_in_this_col != 2:
                 result.rid_column_above(runcol, runrow)
                 result.rid_column_below(runcol, runrow)
                 result.rowop_scl(runrow, 1.0 / result.D[runcol][runrow])
@@ -235,6 +257,27 @@ def gram_smit(spanning):
     return result
 def normal_gram_smit(spanning):
     result = gram_smit(spanning)
-    for ortho in result:
-        ortho = ortho.unit()
+    for indx in range(len(result)):
+        result[indx] = result[indx].unit()
     return result
+
+def factor_lu(A):
+    # A = L U
+    # A must be echelon-able without swap operations
+    # L is lower triangular
+    # U is upper triangular
+
+    run1 = A.augment(identity(A.rows)).echelon_without_swaps()
+    U = run1.slice(A.cols)
+    run2 = run1.slice(-A.rows).augment(identity(A.rows)).reduce()
+    L = run2.slice(-A.rows)
+    return L, U
+def factor_qr(A):
+    # A = Q R
+    # A must have independent cols
+    # Q is orthogonal
+    # R is upper triangular
+
+    Q = vecs_to_cols( normal_gram_smit( cols_to_vecs(A) ) )
+    R = Q.transpose() * A
+    return Q, R
