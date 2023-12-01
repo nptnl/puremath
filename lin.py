@@ -82,11 +82,8 @@ class matrix:
             raise ValueError("matrix is not square for inverse")
         if self.det() == 0:
             raise ValueError("matrix is singular as self.det() == 0")
-        aug = self.clone()
-        aug.augment(identity(self.cols))
-        aug.reduce()
-        result = matrix(self.cols, self.cols)
-        result.D = aug.D[self.cols:]
+        aug = self.augment(identity(self.cols)).reduce()
+        result = aug.slice(-self.cols)
         return result
     
     def transpose(self):
@@ -266,7 +263,6 @@ def factor_lu(A):
     # A must be echelon-able without swap operations
     # L is lower triangular
     # U is upper triangular
-
     run1 = A.augment(identity(A.rows)).echelon_without_swaps()
     U = run1.slice(A.cols)
     run2 = run1.slice(-A.rows).augment(identity(A.rows)).reduce()
@@ -277,7 +273,6 @@ def factor_qr(A):
     # A must have independent cols
     # Q is orthogonal
     # R is upper triangular
-
     Q = vecs_to_cols( normal_gram_smit( cols_to_vecs(A) ) )
     R = Q.transpose() * A
     return Q, R

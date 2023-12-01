@@ -32,3 +32,7 @@
 - do it again in a library [basemath](https://github.com/nptnl/basemath)
 
 - return here for linear algebra
+
+- find eigenvalues
+
+- SVD (A = U Σ V^T)
