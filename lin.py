@@ -244,6 +244,16 @@ class vec(matrix):
     def unit(self):
         return self.scl(1.0 / self.mag1())
 
+def cross(va, vb):
+    a1, a2, a3 = va.D[0]
+    b1, b2, b3 = vb.D[0]
+    x = a2*b3 - b2*a3
+    y = b1*a3 - a1*b3
+    z = a1*b2 - b1*a2
+    out = vec(3)
+    out.D = [[x, y, z]]
+    return out
+
 def gram_smit(spanning):
     result = []
     for inp in spanning:
